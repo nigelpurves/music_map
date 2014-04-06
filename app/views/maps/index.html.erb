@@ -1,0 +1,47 @@
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0 }
+    #map-canvas { height: 100% }
+  </style>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0kPEjbNOJVAD9yvBqa4XCxcPPQKgxzlo&sensor=false">
+  </script>
+  <script type="text/javascript">
+    function initialize() {
+      var mapOptions = {
+        center: new google.maps.LatLng(51.5081, -0.1281),
+        zoom: 12,
+      };
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+          mapOptions);
+			
+					// -------------- MARKER 1
+					    var marker1 = new google.maps.Marker({
+					    position: new google.maps.LatLng(51.5081, -0.1281),
+					    map: map,
+					    // icon: 'img/bike5.png'
+					    });
+
+
+					    // MARKER 1'S INFO WINDOW
+					    var infowindow1 = new google.maps.InfoWindow({
+					    content: 'Name<br />Location<br />Date<br /><br /><a href="http://www.db.no" target="_blank">Read more(test link)</a>'
+					    });
+					    // End of infowindow code
+
+					    // Adding a click event to the marker
+					    google.maps.event.addListener(marker1, 'click', function() {
+					    // Calling the open method of the infoWindow
+					    infowindow1.open(map, marker1);
+					    });
+					    // -------- END OF 1st MARKER
+			
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+</head>
+<body>
+  <div id="map-canvas"/>
+</body>
