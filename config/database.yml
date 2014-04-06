@@ -5,8 +5,10 @@
 #   gem 'sqlite3'
 development:
   host: localhost
-  adapter: postgresql
+  adapter: postgis
   database: music-map-development
+  postgis_extension: postgis
+  schema_search_path: '"$user", public, postgis'
   pool: 5
   timeout: 5000
 

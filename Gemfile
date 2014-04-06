@@ -7,6 +7,8 @@ gem 'rails', '3.2.3'
 
 
 gem 'pg'
+gem 'rgeo'
+gem 'activerecord-postgis-adapter'
 
 
 # Gems used only for assets and not required

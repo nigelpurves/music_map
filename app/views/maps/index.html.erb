@@ -16,27 +16,57 @@
       };
       var map = new google.maps.Map(document.getElementById("map-canvas"),
           mapOptions);
+
+			var locations = <%= raw Place.all.to_json(methods: [:longitude, :latitude, :events]) %>;
 			
-					// -------------- MARKER 1
-					    var marker1 = new google.maps.Marker({
-					    position: new google.maps.LatLng(51.5081, -0.1281),
-					    map: map,
-					    // icon: 'img/bike5.png'
-					    });
+			var infowindow = new google.maps.InfoWindow();
+			
+			var marker, i;
+			
+			var descriptions = new Array();
+
+	    for (i = 0; i < locations.length; i++) 
+				{
+					marker = new google.maps.Marker({
+		        position: new google.maps.LatLng(locations[i]["latitude"], locations[i]["longitude"]),
+		        map: map
+		      });
+					
+					descriptions[i] = "";
+					
+					for (n = 0; n < locations[i]["events"].length; n++)
+					{
+						 descriptions[i] = descriptions[i] + "<br />" + locations[i]["events"][n]["description"];
+					}
+
+	      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		        return function() {
+		          infowindow.setContent(locations[i]["name"] + descriptions[i]);
+		          infowindow.open(map, marker);
+		        }
+		      })(marker, i));
+			}
+			
+			// -------------- MARKER 1
+	    // var marker1 = new google.maps.Marker({
+	    // position: new google.maps.LatLng(51.5081, -0.1281),
+	    // map: map,
+	    // icon: 'img/bike5.png'
+	    // });
 
 
-					    // MARKER 1'S INFO WINDOW
-					    var infowindow1 = new google.maps.InfoWindow({
-					    content: 'Name<br />Location<br />Date<br /><br /><a href="http://www.db.no" target="_blank">Read more(test link)</a>'
-					    });
-					    // End of infowindow code
+	    // MARKER 1'S INFO WINDOW
+	    // var infowindow1 = new google.maps.InfoWindow({
+	    // content: 'Name<br />Location<br />Date<br /><br /><a href="http://www.db.no" target="_blank">Read more(test link)</a>'
+	    // });
+	    // End of infowindow code
 
-					    // Adding a click event to the marker
-					    google.maps.event.addListener(marker1, 'click', function() {
-					    // Calling the open method of the infoWindow
-					    infowindow1.open(map, marker1);
-					    });
-					    // -------- END OF 1st MARKER
+	    // Adding a click event to the marker
+	    // google.maps.event.addListener(marker1, 'click', function() {
+	    // Calling the open method of the infoWindow
+	    // infowindow1.open(map, marker1);
+	    // });
+	    // -------- END OF 1st MARKER
 			
     }
     google.maps.event.addDomListener(window, 'load', initialize);

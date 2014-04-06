@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  headline: MyString
+  description: MyString
+  place_id: 1
+  image_url: MyString
+  1940s: false
+  1950s: false
+  1960s: false
+  1970s: false
+  1980s: false
+  1990s: false
+  2000s: false
+  2010s: false
+
+two:
+  headline: MyString
+  description: MyString
+  place_id: 1
+  image_url: MyString
+  1940s: false
+  1950s: false
+  1960s: false
+  1970s: false
+  1980s: false
+  1990s: false
+  2000s: false
+  2010s: false

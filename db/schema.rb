@@ -11,6 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20140406150329) do
+
+  create_table "events", :force => true do |t|
+    t.string   "headline"
+    t.text     "description"
+    t.integer  "place_id"
+    t.string   "image_url"
+    t.boolean  "y1940s"
+    t.boolean  "y1950s"
+    t.boolean  "y1960s"
+    t.boolean  "y1970s"
+    t.boolean  "y1980s"
+    t.boolean  "y1990s"
+    t.boolean  "y2000s"
+    t.boolean  "y2010s"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "date"
+  end
+
+  create_table "places", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "postcode"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+    t.spatial  "location",   :limit => {:srid=>4326, :type=>"point"}
+  end
 
 end
